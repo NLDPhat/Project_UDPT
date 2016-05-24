@@ -8,13 +8,13 @@ app.get('/',function(req,res){
 
 //Login
 
-app.get('/login',function(req,res){
-	res.render('Partials/login.ejs',{message:req.flash('loginMessage')})
+app.get('/login_local',function(req,res){
+	res.render('Partials/login_local.ejs',{message:req.flash('loginMessage')})
 });
 
-app.post('/login', passport.authenticate('local-login',{
+app.post('/login_local', passport.authenticate('local-login',{
 	successRedirect: '/profile',
-	failureRedirect: '/login',
+	failureRedirect: '/login_local',
 	failureFlash: true
 }));
 
