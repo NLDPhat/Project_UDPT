@@ -1,3 +1,3 @@
 module.exports = {
-	'url' : 'mongodb://<dbuser>:<dbpassword>@ds013232.mlab.com:13232/chatsms'
+	'url' : 'mongodb://<dbuser>:<dbpassword>@ds011903.mlab.com:11903/courselanguage'
 }
