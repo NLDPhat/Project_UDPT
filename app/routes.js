@@ -3,10 +3,16 @@ module.exports=function(app,passport){
 //Home page
 
 app.get('/',function(req,res){
-	res.render('Page/index.ejs');
+	res.render('Page/index.ejs')
 });
-
+//Mail
+app.get('/Email',function(req,res){
+	res.render('Partials/Email.ejs')
+});
 //Login
+app.get('/login',function(req,res){
+	res.render('Partials/login.ejs')
+});
 
 app.get('/login_local',function(req,res){
 	res.render('Partials/login_local.ejs',{message:req.flash('loginMessage')})
@@ -35,7 +41,7 @@ app.post('/signup',passport.authenticate('local-signup',{
 }));
 
 //////FACEBOOK
-app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['email'] }));
 
     // handle the callback after facebook has authenticated the user
     app.get('/auth/facebook/callback',
