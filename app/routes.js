@@ -5,10 +5,7 @@ module.exports=function(app,passport){
 app.get('/',function(req,res){
 	res.render('Page/index.ejs')
 });
-//Mail
-app.get('/Email',function(req,res){
-	res.render('Partials/Email.ejs')
-});
+
 //Login
 app.get('/login',function(req,res){
 	res.render('Partials/login.ejs')
@@ -55,6 +52,28 @@ app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['email'] 
     	req.logout();
     	res.redirect('/');
     });
+
+/// Send mail
+app.get('/Email',function(req,res){
+	res.render('Partials/Email.ejs')
+});
+app.get('Email', function(req,res){
+	var mailOption={
+		to: req.query.to,
+		subject: req.query.subject,
+		text: req.query.text
+	}
+	console.log(mailOption);
+	smtpTransport.sendMail(mailOption,function (error,response) {
+		if(error){
+			console.log(error);
+			res.end(error);
+		}else{
+			console.log("Message sent");
+			res.end('sent');
+		}
+	});
+});
 };
 
 function isLoggedIn(req, res, next){
