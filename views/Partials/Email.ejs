@@ -2,6 +2,22 @@
 <html>
 <head>
 	<% include ../Partials/head %>
+	<script>
+		$(document).ready(function(){
+		var from, to, subject, text;
+		$("#send_email").click(function(){
+		to=$("#to").val();
+		subject=$("#subject").val();
+		text=$("#content").val();
+		$("#message").text("Sending Email...Please wait");
+		$.get("http://localhost:3000/Contract/send",{to:to, subject:subject,text:text},function(data){
+		if(data=="sent")
+		{
+			$("#message").text("Send");
+		}
+});
+	});
+});
 </head>
 <body bgcolor="black">
 	<header>
